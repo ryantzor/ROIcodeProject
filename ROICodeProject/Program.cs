@@ -9,9 +9,7 @@ namespace ROICodeProject
 {
     class Program
     {
-        // create the dictorionary with possible translations
-        // the key is the word that sounds like the number
-        // the value is it's associated value
+
         private static Dictionary<string, string> inflationaryDict;
 
 
@@ -56,33 +54,46 @@ namespace ROICodeProject
             string[] words = sentence.Split(
                 new char[] { ' ' },
                 StringSplitOptions.RemoveEmptyEntries);
-            
-            
+
+
             //look at the original sentence and replace the words with their dictionary values
-            foreach(string s in words)
-            {
-                if (inflationaryDict.ContainsKey(s))
-                {
-                    //Regex.Replace(sentence, s, inflationaryDict[s]);
-                    newSentence = sentence.Replace(s, inflationaryDict[s]);
-                    //Console.WriteLine("Keyfound");
-                }
-            }
+
+
+   
+            string[] newWords = words.Select(x => x.Replace(x, ((inflationaryDict.ContainsKey(x)) ? inflationaryDict[x] : x )) ).ToArray();
+
+
+
+            newSentence = String.Join(" ", newWords);
+
+            Console.WriteLine(newWords);
+            
+            //foreach (string s in words)
+            //{
+            //    s.Trim();
+
+            //    if (inflationaryDict.ContainsKey(s))
+            //    {
+            //        //Regex.Replace(sentence, s, inflationaryDict[s]);
+            //        newSentence = sentence.Replace(s, inflationaryDict[s]);
+            //        //Console.WriteLine("Keyfound");
+            //    }
+            //}
 
             // print results
-            Console.WriteLine("Your translated sentence is " + newSentence + "\n");
+            Console.WriteLine("Your translated sentence is: " + newSentence + "\n");
             // any key to exit
             Console.ReadKey();
         }
 
-        static string InflationaryToNumber(string inflationaryWord)
-        {
+        //static string InflationaryToNumber(string inflationaryWord)
+        //{
 
-            string key1 = inflationaryWord;
-            // if not in the dictionary return the same word
-            if (!inflationaryDict.ContainsKey(key1)) return inflationaryWord;
-            else return inflationaryDict[key1];
-        }
+        //    string key1 = inflationaryWord;
+        //    // if not in the dictionary return the same word
+        //    if (!inflationaryDict.ContainsKey(key1)) return inflationaryWord;
+        //    else return inflationaryDict[key1];
+        //}
 
     }
 
