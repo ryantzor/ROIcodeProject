@@ -40,10 +40,11 @@ namespace ROICodeProject
             // get the line for translation
             Console.WriteLine("Please enter your sentence to be translated into Inflationary english: \n");
             String sentence = Console.ReadLine();
-            Console.WriteLine("Your original sentence was: " + sentence);
-
             // variable for translated sentence
             String newSentence = "";
+            Console.WriteLine("Your original sentence was: " + sentence);
+
+
 
 
             // first get all words in the string provided, and place them into an array 
@@ -55,34 +56,24 @@ namespace ROICodeProject
             string[] words = sentence.Split(
                 new char[] { ' ' },
                 StringSplitOptions.RemoveEmptyEntries);
-            // make a list for translated values
-            List<string> translatedWords = new List<string>();
-
-
+            
             
             //look at the original sentence and replace the words with their dictionary values
             foreach(string s in words)
             {
-
                 if (inflationaryDict.ContainsKey(s))
                 {
                     //Regex.Replace(sentence, s, inflationaryDict[s]);
                     newSentence = sentence.Replace(s, inflationaryDict[s]);
                     //Console.WriteLine("Keyfound");
                 }
-                
-
             }
-
-
 
             // print results
             Console.WriteLine("Your translated sentence is " + newSentence + "\n");
             // any key to exit
             Console.ReadKey();
         }
-
-
 
         static string InflationaryToNumber(string inflationaryWord)
         {
@@ -92,8 +83,6 @@ namespace ROICodeProject
             if (!inflationaryDict.ContainsKey(key1)) return inflationaryWord;
             else return inflationaryDict[key1];
         }
-
-       
 
     }
 
