@@ -3,7 +3,9 @@ This is a prescreen exercise with ROIcode
 
 # How to run and test the program
 
-1. Launch Visual Studio and open the solution file and run the program.  
+1. Launch Visual Studio and open the solution file and run the program. 
+
+2. Alternatively you can build the application in Visual Studio, and navigate to the debug folder. Run the ROICodeproject.exe.
 
 # Problem
 
