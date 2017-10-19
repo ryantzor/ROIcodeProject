@@ -12,10 +12,23 @@ namespace ROICodeProject
 
         private static Dictionary<string, string> inflationaryDict;
 
-
-
         static void Main(string[] args)
         {
+
+            String[] num =
+            {
+                "one",
+                "two",
+                "three",
+                "four",
+                "five",
+                "six",
+                "seven",
+                "eight",
+                "nine",
+                "ten"
+            };
+
 
             // Example translations:
             // one = won
@@ -34,16 +47,12 @@ namespace ROICodeProject
                 {"for", "four"}
             };
 
-
             // get the line for translation
             Console.WriteLine("Please enter your sentence to be translated into Inflationary english: \n");
             String sentence = Console.ReadLine();
             // variable for translated sentence
             String newSentence = "";
             Console.WriteLine("Your original sentence was: " + sentence);
-
-
-
 
             // first get all words in the string provided, and place them into an array 
             // define a regular expression all that are not letters, or numbers
@@ -56,29 +65,31 @@ namespace ROICodeProject
                 StringSplitOptions.RemoveEmptyEntries);
 
 
-            //look at the original sentence and replace the words with their dictionary values
+            // look at the original sentence and replace the words with their dictionary values
+            string[] newWords = words.Select(x => x.Replace(x, ((inflationaryDict.ContainsKey(x)) ? inflationaryDict[x] : x))).ToArray();
 
+            string[] finalWords = newWords;
+            // increment the words that are numbers by 1
 
-   
-            string[] newWords = words.Select(x => x.Replace(x, ((inflationaryDict.ContainsKey(x)) ? inflationaryDict[x] : x )) ).ToArray();
+            for (int i = 0; i <= finalWords.Length - 1; i++)
+            {
+                for (int j = 0; j <= num.Length - 1; j++)
+                {
+                    if(finalWords[i] == num[j])
+                    {
+                        finalWords[i] = num[j + 1];
+                        break;
+                    }
+                }
 
+            }
 
-
-            newSentence = String.Join(" ", newWords);
-
-            Console.WriteLine(newWords);
+            // join the array up again back into sentence form
+            newSentence = String.Join(" ", finalWords);
+            //newSentence = String.Join(" ", newWords);
+            //Console.WriteLine(finalWords);
+            //Console.WriteLine(newWords);
             
-            //foreach (string s in words)
-            //{
-            //    s.Trim();
-
-            //    if (inflationaryDict.ContainsKey(s))
-            //    {
-            //        //Regex.Replace(sentence, s, inflationaryDict[s]);
-            //        newSentence = sentence.Replace(s, inflationaryDict[s]);
-            //        //Console.WriteLine("Keyfound");
-            //    }
-            //}
 
             // print results
             Console.WriteLine("Your translated sentence is: " + newSentence + "\n");
@@ -86,14 +97,6 @@ namespace ROICodeProject
             Console.ReadKey();
         }
 
-        //static string InflationaryToNumber(string inflationaryWord)
-        //{
-
-        //    string key1 = inflationaryWord;
-        //    // if not in the dictionary return the same word
-        //    if (!inflationaryDict.ContainsKey(key1)) return inflationaryWord;
-        //    else return inflationaryDict[key1];
-        //}
 
     }
 
