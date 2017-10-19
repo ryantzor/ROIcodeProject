@@ -1,3 +1,17 @@
+## Unit tests
+1.
+Input: Code review for ROIcode today too fun
+Output: Code review five ROIcode today three fun
+
+2.
+Input: test won two three to for
+Output: test two three three three five
+
+3.
+Input:  Check won two one too ghost ride the pattern for you is full
+Output:  Check three three two four ghost ride the pattern five you is full
+
+
 # ROIcodeProject
 This is a prescreen exercise with ROIcode
 
